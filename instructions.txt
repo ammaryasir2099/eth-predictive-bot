@@ -1,0 +1,109 @@
+Here are **PyInstaller/EXE build instructions** so that **non-Python users** can run your Ethereum Trading Bot as a standalone `.exe` file:
+
+---
+
+## ??? Build Windows EXE from Python Script using PyInstaller
+
+This guide will help you package the trading bot into a `.exe` file using **PyInstaller**, so users without Python can run it easily.
+
+---
+
+### ? Step-by-Step Instructions
+
+#### 1. **Install Python (if not installed)**
+
+* Download and install Python 3.10+ from the official site:
+  ?? [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+* During install, **check the box**: ? *“Add Python to PATH”*
+
+---
+
+#### 2. **Install Required Packages**
+
+Open a terminal (CMD or PowerShell) and run:
+
+```bash
+pip install -r requirements.txt
+```
+
+Make sure you are in the same folder as the `requirements.txt`.
+
+---
+
+#### 3. **Install PyInstaller**
+
+```bash
+pip install pyinstaller
+```
+
+---
+
+#### 4. **Prepare the `.env` File**
+
+Create a `.env` file in the same folder with the following:
+
+```env
+BINANCE_API_KEY=your_api_key
+BINANCE_API_SECRET=your_api_secret
+```
+
+> ?? Replace `your_api_key` and `your_api_secret` with your real Binance API credentials.
+
+---
+
+#### 5. **Build the Executable**
+
+In the terminal, run:
+
+```bash
+pyinstaller --onefile your_script_name.py
+```
+
+For example:
+
+```bash
+pyinstaller --onefile eth_autobot.py
+```
+
+* This creates a `dist/` folder containing `eth_autobot.exe`
+* You can now share this `.exe` file with anyone — no Python required!
+
+---
+
+### ?? Final Folder Structure (Recommended)
+
+```
+/your-bot-folder/
+¦
++-- eth_autobot.py
++-- .env
++-- requirements.txt
++-- README.md
++-- dist/
+    +-- eth_autobot.exe
+```
+
+---
+
+### ?? Important Notes
+
+* If your bot logs data or accesses other files, be sure they are **included** or created at runtime.
+* PyInstaller supports custom icons with `--icon=icon.ico`
+* Disable console window (GUI only) with `--noconsole` if needed
+
+---
+
+### ? Run the Bot
+
+Double-click `eth_autobot.exe` or run from terminal:
+
+```bash
+dist\eth_autobot.exe
+```
+
+> It will start fetching ETH price and placing trades using your Binance Futures account.
+
+---
+
+Let me know if you'd like a batch file or installer to simplify distribution even more.
